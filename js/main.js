@@ -57,11 +57,27 @@ const productos = [
   },
 ];
 
+let nombresProductos = [];
+
+const consultarProductos = prompt(
+  "¿Querés conocer los materiales disponibles? (si/no)"
+);
+
+if (consultarProductos.toLowerCase() === "si") {
+ nombresProductos = productos.map((producto) => producto.nombre);
+
+  console.log("Materiales disponibles:", nombresProductos);
+}
+
 function buscarProductos() {
 
-const textoBuscado = prompt(
-  "Ingrese el nombre del producto que desea buscar. Ejemplo: Pinza"
-);
+let mensajeBusqueda = "Seleccione el nombre del producto que desea buscar";
+
+if (nombresProductos.length > 0) {
+  mensajeBusqueda += "\n\nMateriales disponibles:\n" + nombresProductos.join("\n");
+}
+
+const textoBuscado = prompt(mensajeBusqueda);
 
   const productosEncontrados = productos.filter((producto) =>
     producto.nombre.toLowerCase().includes(textoBuscado.toLowerCase())
